@@ -1,0 +1,43 @@
+.alert {
+  background-color: #ff1100;
+  color: rgb(255, 255, 255); 
+  font-size: 16px;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 35%;
+  top: 20%;
+  z-index: 15;
+  width: 400px;
+  height: 45px;
+}
+  
+.success {
+  background-color: #00a2ff;
+  color: rgb(255, 255, 255); 
+  font-size: 16px;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 35%;
+  top: 20%;
+  z-index: 15;
+  width: 400px;
+  height: 45px;
+}
+
+  
+.closebtn {
+  box-sizing: content-box;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+  
+.closebtn:hover {
+  color: blue;
+}

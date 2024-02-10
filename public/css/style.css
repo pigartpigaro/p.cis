@@ -1,0 +1,134 @@
+/* .container {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  } */
+  /* LOGIN REGISTER */
+
+.login{
+  width: 150%;
+  max-width: 330px;
+  margin: auto;
+  margin-top: 15%;
+  font-size: medium;
+  text-size-adjust: 50%;
+  }
+
+.login .form-floating:focus-within{
+  z-index: 2;
+}
+
+.login input[type="email"] {
+  margin-bottom: -3px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  
+}
+.login input[type="password"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.login input{
+  border-radius: 0;
+  margin-bottom: -1px;
+  font-size: 15px;
+}
+
+.login label{
+  margin-top: -4px;
+  font-style: normal;
+  font-size: small;
+}
+  
+.regist{
+  width: 150%;
+  max-width: 330px;
+  margin: auto;
+  margin-top: 150px;
+  font-size: medium;
+  text-size-adjust: 50%;
+  }
+
+.regist .form-floating:focus-within{
+  z-index: 2;
+}
+
+.regist input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.regist input[type="password"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.regist input{
+  border-radius: 0;
+  margin-bottom: -1px;
+  font-size: 15px;
+}
+
+.regist label{
+  margin-top: -4px;
+  font-style: normal;
+  font-size: small;
+}
+
+.pl{
+  margin: 0;
+
+
+  /* ALERT */
+}
+
+  .container .alert {
+    background-color: #ff1100;
+    color: rgb(255, 255, 255); 
+    font-size: 16px;
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    left: 35%;
+    top: 20%;
+    z-index: 15;
+    width: 400px;
+    height: 40px;
+  }
+  
+  .container .success {
+    background-color: #00a2ff;
+    color: rgb(255, 255, 255); 
+    font-size: 16px;
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    left: 35%;
+    top: 20%;
+    z-index: 15;
+    width: 400px;
+    height: 40px;
+  }
+  
+  .closebtn {
+    box-sizing: content-box;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: blue;
+  }

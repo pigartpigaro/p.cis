@@ -1,0 +1,51 @@
+  /* The side navigation menu */
+  .w3-sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 153, 255);
+    overflow-x: hidden;
+  }
+  
+  .w3-sidebar .x3{
+    
+    padding-top: 65%;
+    text-decoration: none;
+    color:  rgb(255, 217, 0);
+  }
+  /* Sidebar links */
+  .x1 a {
+    display: block;
+    padding: 10%;
+    
+  }
+  .x2 a {
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 10%;
+    font-size: 120%;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Ralewey", sans-serif;
+  }
+  
+  
+  
+  /* Links on mouse-over */
+  .w3-sidebar a.x2:hover{
+    background-color: rgb(255, 217, 0);
+    color: rgb(0, 153, 255);
+  }
+  .w3-sidebar a.x2:hover{
+    background-color: rgb(255, 217, 0);
+    color: rgb(0, 153, 255);
+  }
+  
+  h2 {
+    text-align: center;
+    font-family: "Ralewey", sans-serif;
+  
+  }

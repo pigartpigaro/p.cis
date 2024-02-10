@@ -1,0 +1,18 @@
+.input {
+    position: relative;
+    }
+
+  /* style icon */
+  .input .bi {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  /* add padding  */
+  .input input {
+    padding-left: 30px;
+  }
