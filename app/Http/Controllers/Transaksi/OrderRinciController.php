@@ -20,7 +20,7 @@ class OrderRinciController extends Controller
     {
         $transaksi_id = session('transaksi');
         $produks = Produk::orderBy('id')->get();
-        $transaksi = Transaksi::where('id', $request->id)->get();
+        $transaksi = Transaksi::where('id', $request->id)->get()->first();
         // $transaksi = Transaksi::find($transaksi_id);
         $transaksirinci = Transaksirinci::where('transaksi_id', $request->id)->get();
         $pelanggan = Pelanggan::find(session('pelanggan_id'));
@@ -52,7 +52,7 @@ class OrderRinciController extends Controller
         
         $rinci->save();
         
-        $transaksi = Transaksi::where('id')->first();
+        
         // if (! $transaksi){
         //     return response()->json('Data Tidak Ada',400);
         // }
@@ -60,7 +60,7 @@ class OrderRinciController extends Controller
         // return response()->json('Data berhasil disimpan', 200);
         // return view('transaksi.tambah');
         // return redirect()->route('orderrinci.store');
-        return redirect('/orderrinci')->with('success','Berhasil Disimpan')->compact($transaksi);
+        return redirect(route('orderrinci.store'))->with('success','Berhasil Disimpan');
         
     }
 
@@ -103,7 +103,7 @@ class OrderRinciController extends Controller
             ->addColumn('aksi', function ($id) {
                 return '
                 <div class="btn-group">
-                    <button method="post" onclick="deleteData(`'. route('orderrinci.destroy', $id) .'`)" class="btn btn-lg btn-danger btn-flat"><span data-feather="trash-2"></span></button>
+                    <button method="post" onclick="deleteData(`'. route('orderrinci.destroy', $id) .'`)" class="btn btn-sm btn-danger btn-flat">Hapus</button>
                 </div>
                 ';
             })

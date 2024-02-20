@@ -36,6 +36,8 @@
     </div>
 </header>
 
+
+
 <table id="myTable" class="mt-3">
     <thead>
         <tr>
@@ -45,7 +47,7 @@
           <th style="width:15%">Harga</th>
           <th style="width:15%">Jumlah</th>
         </tr>
-        <tr class="space" style="height:0.2px" ><th style="background-color:white" > </th></tr>
+        <tr class="space" style="height:0.1px" ><th style="background-color:white" > </th></tr>
       </thead>
       <tbody id="body">
         @foreach ($transaksirinci as $trans)
@@ -60,6 +62,7 @@
         </tbody>
 </table>
 <table id="myTable" class="mb-5">
+  <tr class="space" style="height:0.1px" ><th style="background-color:white" > </th></tr>
   <tr>
     <th style="width: 75%">TOTAL</th>
     <th style="text-align: right">{{ format_uang ($trans->transaksi? $trans->transaksi->total:'Not Found') }}</th>

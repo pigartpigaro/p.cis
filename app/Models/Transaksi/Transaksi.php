@@ -25,10 +25,10 @@ class Transaksi extends Model
             return $p->harga;
         })->sum();
     }
-    public function formattedTotal()
-    {
-        return number_format($this->total(), 2);
-    }
+    // public function formattedTotal()
+    // {
+    //     return number_format($this->total(), 2);
+    // }
     public function scopeFilter($query, array $filters)
     {
 

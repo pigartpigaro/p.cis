@@ -103,4 +103,7 @@
         <h4 align="center">by NAMI LAUNDRY</h4>
         <h4>.....</h4>
     </div>
+    <script type="text/javascript">
+        window.print();
+    </script>
 </body>

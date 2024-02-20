@@ -86,12 +86,15 @@ Route::get('/order/{id}/create', [OrderController::class, 'create'])->name('orde
 Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('order.edit');
 Route::resource('order', OrderController::class)->middleware('auth')->except('create', 'edit');
 Route::get('/order/cetak/{id}', [OrderController::class, 'cetak'])->name('order.cetak');
+Route::get('/order/status/{id}', [OrderController::class, 'status'])->name('order.lunas');
+Route::post('/order', [OrderController::class, 'pelangganbaru'])->name('order.pelangganbaru');
+
 
 // Route::resource('orderrinci', OrderRinciController::class)->middleware('auth')->except('create', 'show', 'edit', 'destroy');
 Route::get('/orderrinci', [OrderRinciController::class, 'index'])->name('orderrinci.index');
-Route::post('/orderrinci/store', [OrderRinciController::class, 'store'])->name('orderrinci.store');
+Route::post('/orderrinci', [OrderRinciController::class, 'store'])->name('orderrinci.store');
 Route::get('/orderrinci/{id}/data', [OrderRinciController::class, 'data'])->name('orderrinci.data');
-Route::post('/orderrinci/{id}/destroy', [OrderRinciController::class, 'destroy'])->name('orderrinci.destroy');
+Route::post('/orderrinci/{id}/destroy', [OrderRinciController::class, 'destroy'])->name('orderrinci.destroy')->middleware('auth');
 Route::get('/order/cetak/{id}', [OrderRinciController::class, 'cetak'])->name('orderrinci.cetak');
 
 // Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');

@@ -8,15 +8,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{  Request::is('transaksi*') ? 'active' : '' }}" href="/transaksi">
-          <span data-feather="file" class="align-text-bottom"></span>
-          Transaksi
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link {{  Request::is('order*') ? 'active' : '' }}" href="/order">
           <span data-feather="shopping-cart" class="align-text-bottom"></span>
-          Order
+          Transaksi
         </a>
       </li>
       <li class="nav-item">

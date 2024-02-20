@@ -77,7 +77,7 @@
     </a>
   </div>
 
-  <form class="form-produk" action="/orderrinci">
+  <form class="form-produk" action="{{ route('orderrinci.store') }}">
     @csrf
     <div class="container justify-content-center ml-2">
       <div class="form-group row ml-1 mt-3">
@@ -135,7 +135,7 @@
   <div class="form-group row">
     <div class="col-lg-8">
       <div class="tampil-bayar bg-primary" style="color: #f0f0f0">
-        {{ format_uang ('total') }}
+        {{ format_uang ($trans = isset($transaksi['total']) ? count($transaksi['total']) : ['total']) }}
       </div>
       <div class="tampil-terbilang"></div>
     </div>
@@ -275,18 +275,19 @@
   }
 
   function deleteData(url) {
-    if (confirm('Yakin ingin menghapus data terpilih?')) {
-        $.post(url, {
-                '_token': $('[name=csrf-token]').attr('content'),
-                '_method': 'delete'
-            })
-            .done((response) => {
-                table.ajax.reload();
-            })
-            .fail((errors) => {
-                alert('Tidak dapat menghapus data');
-                return;
-            });
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    // '_token': $('[name=csrf_token]').attr('content'),
+                    '_token': '{{csrf_token()}}',
+                  
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
         }
     }
   

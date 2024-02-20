@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('currency');
+            // $table->string('currency');
+            // $table->unsignedInteger('kategori_id')->change();
+            // $table->foreign('kategori_id')
+            //     ->references('kategori_id')
+            //     ->on('kategori')
+            //     ->onUpdate('restrict')
+            //     ->onDelete('restrict');
         });
     }
 
@@ -25,4 +31,11 @@ return new class extends Migration
     {
         Schema::dropIfExists('produks');
     }
+    // public function down()
+    // {
+    //     Schema::table('produks', function (Blueprint $table){
+    //         $table->integer('kategori_id')->change();
+    //         $table->dropForeign('produks_kategori_id_foreign');
+    //     });
+    // }
 };
