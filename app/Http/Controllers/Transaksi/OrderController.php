@@ -171,7 +171,7 @@ class OrderController extends Controller
         return redirect('/order')->with('success','Berhasil Dihapus');
     }
     public static function buatnomor(){
-        $huruf = ('-NAMI-'); 
+        $huruf = ('NAMI'); 
         
         date_default_timezone_set('Asia/Jakarta');
         $tgl = date('d');

@@ -34,7 +34,7 @@
     </div>
 
     <div class="modal fade" id="modalOrder" tabindex="-1" aria-labelledby="xmodalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="xmodalLabel">Tambah Pelanggan</h1>
@@ -49,9 +49,9 @@
                   </div>
               </div>
           </div>
-          <div>Belum ada Nama Pelanggan??</div>
-          <div class="klik fs-6 mb-3">
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#form" data-bs-whatever="@post" style="background: rgb(255, 217, 0)" type="button">Tambah Pelanggan Baru
+          
+          <div class="klik fs-6 mb-3"> Belum ada Nama Pelanggan?? 
+            <button class="btn ml-2" data-bs-toggle="modal" data-bs-target="#form" data-bs-whatever="@post" style="background: rgb(255, 217, 0)" type="button">Tambah Pelanggan Baru
               <span data-feather="plus-circle" class="align-middle text-primary" style="width: 25px; height: 25px">
               </span> 
             </button>

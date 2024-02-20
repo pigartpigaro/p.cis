@@ -135,7 +135,7 @@
   <div class="form-group row">
     <div class="col-lg-8">
       <div class="tampil-bayar bg-primary" style="color: #f0f0f0">
-        {{ format_uang ($trans = isset($transaksi['total']) ? count($transaksi['total']) : ['total']) }}
+        {{ format_uang ($trans = ['total'])  }}
       </div>
       <div class="tampil-terbilang"></div>
     </div>
