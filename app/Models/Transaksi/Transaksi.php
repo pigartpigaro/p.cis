@@ -6,13 +6,14 @@ use App\Models\Master\Pelanggan;
 use App\Models\Master\Produk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaksi extends Model
 {
-    use HasFactory;
-    protected $guarded= ['id'];
-    protected $table= 'transaksis';
-
+    use HasFactory, SoftDeletes;
+    protected $guarded = ['id'];
+    protected $table = 'transaksis';
+    protected $dates = ['deleted_at'];
     protected $appends = array('total');
     public function getTotalAttribute()
     {
@@ -34,15 +35,15 @@ class Transaksi extends Model
 
         // $query->when($filters['transaksi'] || $filters['pelanggan'] ?? false, function($query, $search) use ($filters) {
         //     $transaksi = $filters['transaksi'] ? $filters['transaksi'] : '';
-        //     $pelanggan = $filters['pelanggan'] ? $filters['pelanggan'] : ''; 
+        //     $pelanggan = $filters['pelanggan'] ? $filters['pelanggan'] : '';
         //     return $query->whereHas('transaksi', function ($q) use ($transaksi){
         //         $q->where('no_nota', 'like', '%' . $transaksi . '%');
         //     })->whereHas('pelanggan', function ($q) use ($pelanggan) {
         //         $q->where('nama', 'like', '%' . $pelanggan . '%');
         //     });
-        // });   
+        // });
 
-            
+
         // $search->when($filters['cari'] ?? false, function ($search, $query) {
         //     return $search->whereHas('transaksi', function ($cari) use ($query) {
         //         $cari->where('no_nota', 'like', '%' . $query . '%');
@@ -55,12 +56,12 @@ class Transaksi extends Model
         // $query->when($filters['cari'] ?? false, function($query, $search) {
         //     return $query->whereHas('transaksi', function($cari) use ($search){
         //         $cari->where('no_nota','like', '%' . $search . '%')
-        //                 ->orWhere('tanggal','like', '%' . $search . '%'); 
+        //                 ->orWhere('tanggal','like', '%' . $search . '%');
         //     })
         //     ->orWhereHas('pelanggan', function($cari) use ($search){
         //         $cari->where('nama','like', '%' . $search . '%');
-        //     });       
-        // });     
+        //     });
+        // });
 
 
         $query->when($filters['search'] ?? false, function($query, $search) {
@@ -69,15 +70,15 @@ class Transaksi extends Model
         });
 
 
-        
+
     }
-    
+
     public function pelanggan (){
         return $this->belongsTo(Pelanggan::class);
     }
-    
+
     public function transaksirinci (){
         return $this->hasMany(Transaksirinci::class);
     }
-    
+
 }

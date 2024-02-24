@@ -5,12 +5,14 @@ namespace App\Models\Transaksi;
 use App\Models\Master\Produk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaksirinci extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $guarded = ['id'];
     protected $table = 'transaksirincis';
+    protected $dates = ['deleted_at'];
     protected $appends = array ('subtotal');
     public function getSubtotalAttribute()
     {
@@ -25,8 +27,8 @@ class Transaksirinci extends Model
                       ;
         });
     }
-    
-    
+
+
     public function produk (){
         return $this->belongsTo(Produk::class);
     }
