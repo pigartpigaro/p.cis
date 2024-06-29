@@ -26,8 +26,8 @@
     </div>
     @endif
 
-    <div class="klik fs-6 mb-3">
-      <a href="/order/create" class="btn ml-3" data-bs-toggle="modal" data-bs-target="#modalOrder" data-bs-whatever="@post" style="background: rgb(255, 217, 0)" type="button">Pilih Pelanggan
+    <div class="klik fs-3 mb-3">
+      <a href="/order/create" class="btn ml-2" data-bs-toggle="modal" data-bs-target="#modalOrder" data-bs-whatever="@post" style="background: rgb(255, 217, 0)" type="button">Pilih Pelanggan
         <span data-feather="plus-circle" class="align-middle text-primary" style="width: 25px; height: 25px">
         </span>
       </a>
@@ -49,14 +49,14 @@
                   </div>
               </div>
           </div>
-          
-          <div class="klik fs-6 mb-3"> Belum ada Nama Pelanggan?? 
+
+          <div class="klik fs-6 mb-3"> Belum ada Nama Pelanggan??
             <button class="btn ml-2" data-bs-toggle="modal" data-bs-target="#form" data-bs-whatever="@post" style="background: rgb(255, 217, 0)" type="button">Tambah Pelanggan Baru
               <span data-feather="plus-circle" class="align-middle text-primary" style="width: 25px; height: 25px">
-              </span> 
+              </span>
             </button>
           </div>
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <th>No</th>
                 <th>Nama</th>
@@ -89,7 +89,7 @@
     </div> --}}
 </body>
 
- 
+
 
 {{-- form Pelanggan Baru --}}
 <div class="modal fade" id="form" tabindex="-1" aria-labelledby="xmodalLabel" aria-hidden="true">
@@ -128,14 +128,14 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="btn-save">SIMPAN</button>
                 </div>
-            </form>  
-        </div>     
+            </form>
+        </div>
       </div>
     </div>
 </div>
 
 <div class="container mb-3">
-    
+
       <table id="myTable">
           <thead>
             <tr>
@@ -162,9 +162,9 @@
               <td style="text-align: right">{{ format_uang ($trans->total) }}</td>
               <td style="text-align: center">
                 @if ($trans->status == 1)
-                <a href="/order/status/{{ $trans->id }}" class="btn btn-sm btn-danger">Batal Lunas</a>    
+                <a href="/order/status/{{ $trans->id }}" class="btn btn-sm btn-danger">Batal Lunas</a>
                 @else
-                <a href="/order/status/{{ $trans->id }}" class="btn btn-sm btn-success">Lunasi</a>    
+                <a href="/order/status/{{ $trans->id }}" class="btn btn-sm btn-success">Lunasi</a>
                 @endif
                 |
                 <a href="/order/{{ $trans->id }}" class="btn btn-sm btn-info"><i data-feather="eye"></i><a>
@@ -181,12 +181,12 @@
                 </form>
                 {{-- <a href="/order/hapus{{ $cp->id }}" class="btn btn-sm btn-danger"><i ></i></a> --}}
               </td>
-            </tr> 
+            </tr>
           @endforeach
           </tbody>
-          
+
       </table>
-    
+
 </div>
 
 

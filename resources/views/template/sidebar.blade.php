@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-light sidebar collapse">
+<div id="sidebarMenu" class="col d-md-block bg-light sidebar collapse">
   <div class="position-sticky pt-1 sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
@@ -50,44 +50,9 @@
           Reports
         </a>
       </li>
-      
-    </ul>
-
-    
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-      <span>Saved reports</span>
-      <a class="link-secondary" href="#" aria-label="Add a new report">
-        <span data-feather="plus-circle" class="align-text-bottom"></span>
-      </a>
-    </h6>
-    <ul class="nav flex-column mb-2">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text" class="align-text-bottom"></span>
-          Current month
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text" class="align-text-bottom"></span>
-          Last quarter
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text" class="align-text-bottom"></span>
-          Social engagement
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text" class="align-text-bottom"></span>
-          Year-end sale
-        </a>
-      </li>
     </ul>
   </div>
-</nav>
+</div>
 
 
 {{-- <script src="/js/bar.js"></script>
@@ -95,7 +60,7 @@
   <div class="x1">
     @csrf
     <a href="/home" class="x1"><img src="img/Logomenu2.svg" width="100%"></a>
-    
+
   </div>
 
     <div class="x2">
@@ -108,7 +73,7 @@
           <a href="#" class="w3-button w3-hover-yellow w3-hover-text-blue">Produk</a>
           <a href="#" class="w3-button w3-hover-yellow w3-hover-text-blue">Satuan</a>
         </div>
-    
+
     <div>
       <a class="w3-button w3-hover-yellow w3-hover-text-blue w3-left-align" onclick="myFunction('a2')">
         Transaksi <i class="fa fa-caret-down"></i>

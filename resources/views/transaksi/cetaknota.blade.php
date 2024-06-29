@@ -58,20 +58,20 @@
 
 <body align="center">
     <div class="form-group">
-        
+
         <img src="/img/LogoNami.svg" width="50px">
         <h3 align="center"><b>NAMI LAUNDRY</b></h3>
         <h3><b>WA 082324141494</b></h3>
         <h3 align="center"><b>Nota : {{ $transaksi->no_nota }}</b></h3>
         <h3 align="center"><b>Tanggal {{ $transaksi->tanggal ?? '' }}</b></h3>
         <h3 align="center"><b>Pukul {{ $transaksi->time ?? '' }}</b></h3>
-        
+
         <p style="text-align:left" class="p1" >
             <b>Nama : {{ $transaksi->Pelanggan->nama ?? '' }}</b></p>
-        
+
         <p style="text-align:left">
             <b>Telp : {{ $transaksi->Pelanggan->nohp ?? ''  }}</b></p>
-        
+
         <p style="text-align:left">
             <b>Alamat : {{ $transaksi->Pelanggan->alamat ?? ''  }}</b></p>
 
@@ -85,9 +85,9 @@
             <tbody>
                 @foreach ($transaksirinci as $trans)
                   <tr>
-                    <td>- {{ $trans->produk? $trans->produk->nama:'Not Found' }} | {{ $trans->kuantitas }} x {{ format_uang ($trans->produk? $trans->produk->harga:'Not Found') }}</td>
+                    <td>- {{ $trans->produk? $trans->produk->nama:'Not Found' }} | {{ $trans->keterangan }} | {{ $trans->kuantitas }} x {{ format_uang ($trans->produk? $trans->produk->harga:'Not Found') }}</td>
                     <td style="text-align: right">{{ format_uang ($trans->subtotal) }} </td>
-                  </tr> 
+                  </tr>
                 @endforeach
             </tbody>
         </table>

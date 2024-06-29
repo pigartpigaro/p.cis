@@ -13,12 +13,12 @@ class TransaksiController extends Controller
         ->get();
         return response()->json($data);
     }
-    
+
     public function posttransaksi(Request $request){
 
         $nota = self::buatnomor(); //manggil fungsi yg dbwah
         $tanggal = self::buattanggal();
-   
+
         $data = Transaksi::create([
             'no_nota'=> $nota,
             'tanggal'=> $tanggal,
@@ -39,7 +39,7 @@ class TransaksiController extends Controller
         $data=Transaksi::find($request->id);
         if(!$data){
             return response()->json('NotValid',500);
-        }        
+        }
         $data->update([
             'pelanggan_id'=> $request->pelanggan_id,
         ]);
@@ -60,12 +60,12 @@ class TransaksiController extends Controller
     //cara buat penomoran random (sesuai tnggal)
     //string atau 3 kata random
     public static function buatnomor(){
-        $huruf = str('NAMI'); 
+        $huruf = ('NAMI');
 
         date_default_timezone_set('Asia/Jakarta');
         $tgl = date('d');
         $time = date('mis');
-        
+
         //cara menyambungkan antara tgl dn kata dihubungkan tnda .
         $sambung = $tgl.strtoupper($huruf).$time;
         return $sambung;
@@ -77,5 +77,5 @@ class TransaksiController extends Controller
         return $tanggal;
 
     }
-        
+
 }
