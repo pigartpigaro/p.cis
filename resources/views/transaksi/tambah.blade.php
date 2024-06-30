@@ -34,7 +34,7 @@
       </span> Back
     </a>
   </div>
-    
+
   <div class="form-group row mt-2 ml-4">
     <div class="col-md-12">
       <div class="box">
@@ -77,7 +77,7 @@
     </a>
   </div>
 
-  <form class="form-produk" action="/orderrinci">
+  <form class="form-produk" action="{{ route('orderrinci.store') }}">
     @csrf
     <div class="container justify-content-center ml-2">
       <div class="form-group row ml-1 mt-3">
@@ -89,6 +89,9 @@
         <div class="col-auto">
           <input type="text" name="kuantitas" class="form-control"  placeholder="Kuantitas" required>
         </div>
+        <div class="col-auto">
+            <input type="text" name="keterangan" class="form-control"  placeholder="keterangan" required>
+          </div>
         <div class="col-auto">
           <input type="number" name="harga" id="harga_produk" class="form-control" placeholder="Harga" readonly>
         </div>
@@ -106,6 +109,7 @@
         <th style="width:5%">No</th>
         <th >Layanan</th>
         <th style="width:10%">Kuantitas</th>
+        <th >Keterangan</th>
         <th >Harga</th>
         <th >Jumlah</th>
         <th style="width:15%">Aksi</th>
@@ -127,7 +131,7 @@
             <button class="btn btn-sm btn-danger" onclick="return confirm('Anda ingin Menghapus Data?')"> <span data-feather="trash-2"></span></button>
           </form>
         </td>
-      </tr> 
+      </tr>
       @endforeach
     </tbody> --}}
   </table>
@@ -135,17 +139,17 @@
   <div class="form-group row">
     <div class="col-lg-8">
       <div class="tampil-bayar bg-primary" style="color: #f0f0f0">
-        {{ format_uang ('total') }}
+        {{ format_uang ($trans = ['total'])  }}
       </div>
       <div class="tampil-terbilang"></div>
     </div>
-    
+
       <a target="_blank" href="{{ route('orderrinci.cetak', $transaksi_id) }}" class="btn" type="button" style="width: 200px; height: 40px">
         <span data-feather="printer" class="text-primary mr-3" style="width: 25px; height: 25px">
         </span>CETAK NOTA
       </a>
   </div>
-  
+
 
 
 
@@ -176,7 +180,7 @@
                 <th>Aksi</th>
               </thead>
               <tbody id="bodyModal">
-                @foreach ($produks as $key => $item) 
+                @foreach ($produks as $key => $item)
                 <form class="form-produk" action="/orderrinci" method="post">
                   @csrf
                   <tr>
@@ -235,6 +239,7 @@
         {data: 'DT_RowIndex', searchable: false, sortable: false},
         {data: 'nama'},
         {data: 'kuantitas'},
+        {data: 'keterangan'},
         {data: 'harga'},
         {data: 'subtotal'},
         {data: 'aksi', searchable: false, sortable: false},
@@ -256,13 +261,13 @@
     $('#produk_id').val(id);
     $('#nama_produk').val(nama);
     $('#harga_produk').val(harga);
-    
+
     hideProduk();
     // tambahProduk();
   }
 
   function tambahProduk(){
-    
+
     $.post('{{ route('orderrinci.store') }}', $('.form-produk').serialize())
       .done(response => {
         $('#nama_produk').focus();
@@ -275,21 +280,22 @@
   }
 
   function deleteData(url) {
-    if (confirm('Yakin ingin menghapus data terpilih?')) {
-        $.post(url, {
-                '_token': $('[name=csrf-token]').attr('content'),
-                '_method': 'delete'
-            })
-            .done((response) => {
-                table.ajax.reload();
-            })
-            .fail((errors) => {
-                alert('Tidak dapat menghapus data');
-                return;
-            });
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    // '_token': $('[name=csrf_token]').attr('content'),
+                    '_token': '{{csrf_token()}}',
+
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
         }
     }
-  
+
 </script>
 @endpush
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

@@ -17,8 +17,8 @@ class ProdukController extends Controller
             'produk'=>Produk::latest()
             // 'produk'=>Produk::with('kategori')->latest()
             ->filter(request(['search','kategori']))
-            ->paginate(10)->withQueryString()  
-        ]);    
+            ->paginate(10)->withQueryString()
+        ]);
     }
 
     public function create()
@@ -44,7 +44,7 @@ class ProdukController extends Controller
         //     'harga'=> $request->harga,
         //     'kategori_id'=> $request->kategori_id,
         //     'satuan_id'=> $request->satuan_id,
-            
+
         // ]);
     //  Cara Ketiga
         $validator = $request -> validate([
@@ -55,7 +55,7 @@ class ProdukController extends Controller
         ]);
         $validator['id'] = auth()->user()->id;
 
-        
+
         Produk::create($validator);
         return redirect('/produk')->with('success','Berhasil Disimpan');
     }
@@ -89,7 +89,7 @@ class ProdukController extends Controller
 
     public function destroy(Request $data, String $id)
     {
-        
+
         $data=Produk::find($id);
         // if(!$data){
             //     return response()->json('NotValid',500);

@@ -2,28 +2,28 @@
 * {
     box-sizing: border-box;
   }
-  
+
 
   /* FORM INPUT */
   #myInput {
-    
+
     background-position: 1px 1px;
     background-size: 1px;
     background-repeat: no-repeat;
     width: 30%;
     font-size: 16px;
-    padding: 12px 20px 12px 40px;
+    /* padding: 12px 20px 12px 40px; */
     border: 1px solid #ddd;
     border-radius: 10px;
     margin-bottom: 12px;
   }
-  
+
   #myTable {
     border-collapse: collapse;
-    border-width: 90px;
-    width: 100%;
-    column-width: auto;  
-    font-size: 18px;
+    /* border-width: 90px; */
+    width: auto;
+    column-width: auto;
+    /* font-size: 18px; */
 
   }
   #myTable th {
@@ -45,11 +45,11 @@
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
   }
-  
+
   #myTable tr {
     border-collapse: collapse;
   }
-  
+
   #myTable tr:hover {
     background-color: #eff9ff;
   }

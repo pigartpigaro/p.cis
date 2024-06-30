@@ -1,5 +1,5 @@
-<header class="navbar navbar-dark sticky-top bg-warning flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand text-black col-md-3 col-lg-2 me-0 px-5 fs-6 fw-bold" href="/home"><img class="align-text-top" src="img/LogoNami.svg" width="22px"> Nami Laundry </a>
+<header class="navbar navbar-dark sticky-top bg-warning flex-md-nowrap p-0 shadow" style="width: 100%">
+    <div class="text-black col-lg-2 fs-6 fw-bold" href="/home"><img class="align-text-top" src="/img/LogoNami.svg" width="22px"> Nami Laundry </div>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

@@ -9,6 +9,7 @@ use App\Models\Master\Pelanggan;
 use App\Models\Master\Produk;
 use App\Models\Transaksi\Transaksi;
 use App\Models\Transaksi\Transaksirinci;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
@@ -20,9 +21,9 @@ class OrderController extends Controller
     {
         // $pelanggan = Pelanggan::all();
         // $transaksi = Transaksi::all();
-       
-        
-        
+
+
+
         $pelanggan = Pelanggan::orderBy('nama')->get();
         // $transaksi = Transaksi::all();
         $transaksi = Transaksi::all();
@@ -33,26 +34,39 @@ class OrderController extends Controller
         $transaksirinci = Transaksirinci::all();
         $produk = Produk::all();
         return view('transaksi.order', compact('pelanggan','transaksi','transaksirinci','produk'));
-        
+
         // return view('transaksi.order', [
         //     Transaksi::with('transaksirinci', 'pelanggan')->latest()
-            
-            
+
+
         //     ->filter(request(['search','transaksi','transaksirinci','pelanggan']))
         //     ->paginate(10)->withQueryString()
         // ]);
     }
+    public function pelangganbaru(Request $request)
+    {
+        $validator = $request -> validate([
+            'nama' => 'required|min:3|max:255',
+            'alamat' => 'max:255',
+            'nohp' => 'required|min:5|numeric',
+        ]);
+        $validator['id'] = auth()->user()->id;
 
+
+        Pelanggan::create($validator);
+        return redirect()->route('order.index');
+
+    }
     public function cetak(string $id)
     {
         $data=Transaksi::with(['Pelanggan'])
         ->find($id);
         $rinci=Transaksirinci::where('transaksi_id',$id)->get();
-        
+
         return view('transaksi.cetak')
         ->with('transaksi', $data)
         ->with('transaksirinci', $rinci);
-        
+
 
     }
 
@@ -68,17 +82,17 @@ class OrderController extends Controller
         $order->time = self::time();
 
         $order->save();
-       
+
         session(['transaksi'=> $order->id]);
         session(['pelanggan_id'=> $order->pelanggan_id]);
 
         return redirect()->route('orderrinci.index');
         // $pelanggans = Pelanggan::all();
         // $produks = Produk::all();
-        
+
         // return view('transaksi.tambah', compact('pelanggans','produks'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -103,11 +117,11 @@ class OrderController extends Controller
         $data=Transaksi::with(['Pelanggan'])
         ->find($id);
         $rinci=Transaksirinci::where('transaksi_id',$id)->get();
-        
+
         return view('transaksi.view')
         ->with('transaksi', $data)
         ->with('transaksirinci', $rinci);
-        
+
 
     }
 
@@ -121,7 +135,7 @@ class OrderController extends Controller
         //     'kategoris' => Produk::all(),
         //     'pelanggan' => Pelanggan::orderBy('nama')->get()
         // ]);
-        
+
         $transaksi_id = session('transaksi');
         $pelanggan = Pelanggan::orderBy('nama')->first();
         $transaksi=Transaksi::with(['Pelanggan'])
@@ -156,15 +170,44 @@ class OrderController extends Controller
         $data->delete();
         return redirect('/order')->with('success','Berhasil Dihapus');
     }
+    // public function trash()
+    // {
+    //     $data=Transaksi::onlyTrashed()->get();
+
+    //     return redirect('/order')->with('success','Berhasil Dihapus');
+    // }
     public static function buatnomor(){
-        $huruf = ('NAMI'); 
+        $huruf = ('NAMI');
 
         date_default_timezone_set('Asia/Jakarta');
         $tgl = date('d');
-        $time = date('mis');
-        
-        //cara menyambungkan antara tgl dn kata dihubungkan tnda .
-        $sambung = $tgl.strtoupper($huruf).$time;
+        // $time = date('mis');
+        // $nomer=Transaksi::latest();
+        $cek = Transaksi::count();
+        if ($cek == null){
+            $urut = "0001";
+            $sambung = $tgl.strtoupper($huruf).$urut;
+        }
+        else{
+            $ambil=Transaksi::all()->last();
+            $urut = (int)substr($ambil->no_nota, 7, 4) + 1;
+            //cara menyambungkan antara tgl dn kata dihubungkan tnda .
+            // $urut = "000" . $urut;
+            if(strlen($urut) == 1){
+                $urut = "000" . $urut;
+            }
+            else if(strlen($urut) == 2){
+                $urut = "00" . $urut;
+            }
+            else if(strlen($urut) == 1){
+                $urut = "0" . $urut;
+            }
+            else {
+                $urut = (int)$urut;
+            }
+            $sambung = $tgl.strtoupper($huruf).$urut;
+        }
+
         return $sambung;
     }
     //cara buat tanggal
@@ -180,6 +223,19 @@ class OrderController extends Controller
         return $time;
 
     }
-
-    
+    public function status($id){
+        $data=Transaksi::where('id',$id)->first();
+        $aktif = $data->status;
+        if($aktif == 1){
+            Transaksi::where('id',$id)->update([
+                'status'=>0
+            ]);
+        }else{
+            Transaksi::where('id',$id)->update([
+                'status'=>1
+            ]);
+        }
+        // \Session()->flash('sukses','Status Berhasil diubah');
+        return redirect('/order');
+    }
 }

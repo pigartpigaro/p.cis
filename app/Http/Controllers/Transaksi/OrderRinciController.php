@@ -20,7 +20,7 @@ class OrderRinciController extends Controller
     {
         $transaksi_id = session('transaksi');
         $produks = Produk::orderBy('id')->get();
-        $transaksi = Transaksi::where('id', $request->id)->get();
+        $transaksi = Transaksi::where('id', $request->id)->get()->first();
         // $transaksi = Transaksi::find($transaksi_id);
         $transaksirinci = Transaksirinci::where('transaksi_id', $request->id)->get();
         $pelanggan = Pelanggan::find(session('pelanggan_id'));
@@ -30,7 +30,7 @@ class OrderRinciController extends Controller
         return view('transaksi.tambah', compact('transaksi_id','produks','pelanggan','transaksi', 'transaksirinci'));
     }
 
-    
+
     public function store(Request $request)
     {
         // return $request->all();
@@ -48,11 +48,12 @@ class OrderRinciController extends Controller
         // pointing dengn produk id didlam modal
         // $rinci->kuantitas = $request[$kuantitas];
         $rinci->kuantitas = $request->kuantitas;
+        $rinci->keterangan = $request->keterangan;
         $rinci->harga_id = $produk->harga;
-        
+
         $rinci->save();
-        
-        $transaksi = Transaksi::where('id')->first();
+
+
         // if (! $transaksi){
         //     return response()->json('Data Tidak Ada',400);
         // }
@@ -60,8 +61,8 @@ class OrderRinciController extends Controller
         // return response()->json('Data berhasil disimpan', 200);
         // return view('transaksi.tambah');
         // return redirect()->route('orderrinci.store');
-        return redirect('/orderrinci')->with('success','Berhasil Disimpan')->compact($transaksi);
-        
+        return redirect(route('orderrinci.store'))->with('success','Berhasil Disimpan');
+
     }
 
     public function cetak(string $id)
@@ -69,16 +70,16 @@ class OrderRinciController extends Controller
         $data=Transaksi::with(['Pelanggan'])
         ->find($id);
         $rinci=Transaksirinci::where('transaksi_id',$id)->get();
-        
+
         return view('transaksi.cetaknota')
         ->with('transaksi', $data)
         ->with('transaksirinci', $rinci);
-        
+
 
     }
 
     public function data ($id)
-    {   
+    {
         // dataTablerinci
         // return DataTables::of(Transaksirinci::query())->addIndexColumn()->toJson();
         $rinci = Transaksirinci::with('produk')
@@ -94,6 +95,9 @@ class OrderRinciController extends Controller
             ->addColumn('kuantitas', function ($rinci){
                 return $rinci->kuantitas;
             })
+            ->addColumn('keterangan', function ($rinci){
+                return $rinci->keterangan;
+            })
             ->addColumn('harga', function ($rinci){
                 return(format_uang($rinci->produk['harga'])) ;
             })
@@ -103,14 +107,14 @@ class OrderRinciController extends Controller
             ->addColumn('aksi', function ($id) {
                 return '
                 <div class="btn-group">
-                    <button method="post" onclick="deleteData(`'. route('orderrinci.destroy', $id) .'`)" class="btn btn-lg btn-danger btn-flat"><span data-feather="trash-2"></span></button>
+                    <button method="post" onclick="deleteData(`'. route('orderrinci.destroy', $id) .'`)" class="btn btn-sm btn-danger btn-flat">Hapus</button>
                 </div>
                 ';
             })
             ->rawColumns(['aksi'])
             ->make(true);
-        
-        
+
+
     }
     public function destroy($id)
     {
@@ -130,4 +134,3 @@ class OrderRinciController extends Controller
         return response(null, 204);
     }
 }
- 
